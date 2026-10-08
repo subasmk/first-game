@@ -50,7 +50,7 @@ class VisualPolish:
 		scene.get_node("Label").position = Vector2(-94, -28)
 		scene.get_node("Label3").text = "WATCH YOUR STEP"
 		scene.get_node("Label4").hide()
-		scene.get_node("Label2").text = "YOU REACHED THE END!"
+		scene.get_node("Label2").text = "HOME AT LAST!\nDID YOU FIND ALL 7 SUN COINS?"
 		var hud := CanvasLayer.new()
 		hud.layer = 20
 		add_child(hud)
@@ -64,13 +64,20 @@ class VisualPolish:
 		bar.size = Vector2(300, 82)
 		hud.add_child(bar)
 		_make_label(bar, "FIRST GAME", Vector2(16, 10), 22, Color("f6e9bb"))
-		_make_label(bar, "MY FIRST GODOT ADVENTURE", Vector2(16, 43), 10, Color("b6c7a0"))
+		_make_label(bar, "THE VALLEY OF SEVEN SUN COINS", Vector2(16, 43), 10, Color("b6c7a0"))
+		var story := Panel.new()
+		story.add_theme_stylebox_override("panel", style)
+		story.position = Vector2(340, 18)
+		story.size = Vector2(580, 82)
+		hud.add_child(story)
+		_make_label(story, "THE VALLEY'S LANTERN HAS GONE DARK.", Vector2(16, 10), 12, Color("f1d58a"))
+		_make_label(story, "FIND 7 SUN COINS. BRING ITS LIGHT HOME.", Vector2(16, 42), 12, Color("f6e9bb"))
 		var score_panel := Panel.new()
 		score_panel.add_theme_stylebox_override("panel", style)
 		score_panel.position = Vector2(get_viewport_rect().size.x - 220, 18)
 		score_panel.size = Vector2(200, 82)
 		hud.add_child(score_panel)
-		_make_label(score_panel, "COINS COLLECTED", Vector2(15, 10), 11, Color("b6c7a0"))
+		_make_label(score_panel, "SUN COINS", Vector2(15, 10), 11, Color("b6c7a0"))
 		hud_score = _make_label(score_panel, "00 / 07", Vector2(15, 35), 24, Color("f1d58a"))
 		var total := coin_total
 		hud_score.text = "00 / %02d" % total
