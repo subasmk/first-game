@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://br462cv7ramgl"]
+
+[ext_resource type="Texture2D" uid="uid://lhiprijls2e" path="res://ASSETS/sprites/slime_green.png" id="1_ovbwj"]
+[ext_resource type="PackedScene" uid="uid://c8b5pyuai4uuv" path="res://ASSETS/scenes/killzone.tscn" id="2_a8tcb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hr1bg"]
+atlas = ExtResource("1_ovbwj")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oi1qb"]
+atlas = ExtResource("1_ovbwj")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsnai"]
+atlas = ExtResource("1_ovbwj")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66ygv"]
+atlas = ExtResource("1_ovbwj")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nduqj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hr1bg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oi1qb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsnai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66ygv")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2enla"]
+size = Vector2(17, 13)
+
+[node name="slime" type="Node2D" unique_id=1321762750]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2138219898]
+position = Vector2(0, 1)
+sprite_frames = SubResource("SpriteFrames_nduqj")
+autoplay = "default"
+frame_progress = 0.9011057
+
+[node name="killzone" parent="." unique_id=1091292526 instance=ExtResource("2_a8tcb")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone" unique_id=2003439738]
+position = Vector2(-0.5, 5.5)
+shape = SubResource("RectangleShape2D_2enla")
+
+[node name="right" type="RayCast2D" parent="." unique_id=1079715912]
+target_position = Vector2(11, 0)
+
+[node name="left" type="RayCast2D" parent="." unique_id=189216563]
+target_position = Vector2(-12, 0)
