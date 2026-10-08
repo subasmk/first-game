@@ -21,7 +21,6 @@ class VisualPolish:
 	func _attach_scene() -> void:
 		scene = get_tree().current_scene
 		if not is_instance_valid(scene): return
-		scene.tree_exited.connect(func(): _reset_polish.call_deferred(), CONNECT_ONE_SHOT)
 		displayed_score = 0
 		coin_total = 0
 		for coin in scene.find_children("*", "Area2D", true, false):
@@ -122,12 +121,6 @@ class VisualPolish:
 			var color: Color = spark.color
 			color.a = spark.life / 0.45
 			draw_rect(Rect2(spark.p, Vector2(1.5, 1.5)), color)
-	
-	func _reset_polish() -> void:
-		await get_tree().process_frame
-		for child in get_children(): child.queue_free()
-		await get_tree().process_frame
-		_attach_scene()
 	
 	class PixelSky:
 		extends Control
